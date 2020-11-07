@@ -1,0 +1,46 @@
+* nhóm 6
+
+- F0 là gì (1.5)
+
+- hàm tự tương quan (2.2)
+
+- các tham số 
+-- hữu thanh - vô thanh
+-- ngưỡng chuẩn -> tuần hoàn hay không tuần hoàn
+
+- Đọc tới 2.4.2. ngưỡng xđ tuần hoàn, không tuần hoàn
+2.3. thuật toán tính F0
+
+*
+- bài th 3: tìm F0 của th tiếng nói bằng hàm tự tương quan
+- tín hiệu tiếng nói:
+-- âm hữu thanh: tuần hoàn, có F0 
+-- âm vô thanh: k tuần hoàn, k có F0
+- Chia tín hiệu tiếng nói theo từng khung -> F0 (có thể k có -> k xđ)
+- Hàm tự tương quan cho biết độ tương tự của tín hiệu với 
+bản sao bị dịch đi *t-hoa mẫu của tín hiệu
+-- Là hàm của độ dịch thời gian *t-hoa (/tô/)
+-- có biên độ giảm dần khi *t-hoa tăng dần (mức độ tương tự giảm dần khi thời gian tăng dần)
+-- nếu tín hiệu là tuần hoàn thì hàm ttq đạt cực đại cục bộ tại các thời điểm bằng
+1 số bội của chu kỳ cơ bản (k*T0, k >0)
+
+* thuật toán tìm T0 khi biết hàm TTQ:
+tìm các đỉnh cực đại cục bộ cách đều nhau -> tìm khoảng cách đều <- T0
+
+* quá trình (giải thuật):
+- Tìm ngưỡng của hàm TTQ làm chuẩn xđ khung TH là tuần hoàn hay k
+- Tính T0 nếu khung tuần hoàn, 1 khung dài 20ms!
+
+* sử dụng 2 thuật toán:
+- sử dụng hàm tự tương quan
+- sử dụng hàm phổ biên độ (tuần sau)
+
+
+* hàm TTQ:
+tín hiệu y có chiều dài N mẫu
+*t-hoa có chiều dài N mẫu: 0:N-1
+với mỗi khung thời gian t:
+Rt(*t-hoa) = sum(
+(hàm Rt theo *t-hoa)
+
+R(t), với R(t0) là hàm số theo *t-hoa (mẫu | giây)
