@@ -1,0 +1,8 @@
+- lab-female.wav
+mean: 188.573622 sd: 55.053573
+- lab-male.wav
+mean: 114.861225 sd: 6.352365
+- studio-female.wav
+mean: 225.831888 sd: 55.204577
+- studio-male.wav
+mean: 121.519344 sd: 16.978289

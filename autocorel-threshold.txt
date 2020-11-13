@@ -1,0 +1,22 @@
+- [0;1] range
+0.6 (studio-male & studio-female)
+0.9 (studio-female: at sample number 69, amplitude must be < threshold because it's a silence frame)
+
+- stdnormalize*
+3.5 (studio-female)
+
+==
+local maximum condition:
+Thông thường, F0 của giọng nam nằm trong khoảng từ 70 Hz đến 250 Hz,
+trong khi đó giọng nữ có F0 từ 150 Hz đến 400 Hz [4].
+
+70 <= delta_n <= 400
+70/felms <= delta_f <= 400/felms
+ (leftB)		(rightB)
+
+== finding f0
+delta_f = f2-f1 (samples)
+Fs (samples) in 1 sec
+delta_f      in ? sec
+? = T0 = delta_f/Fs
+-> f0 = 1/T0
