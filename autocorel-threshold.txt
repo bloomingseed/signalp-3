@@ -1,9 +1,9 @@
-- [0;1] range
-0.6 (studio-male & studio-female)
-0.9 (studio-female: at sample number 69, amplitude must be < threshold because it's a silence frame)
+0.3 	-> missed few voiced speeches
+0.23 (lab-male)	-> included first unvoicedd
+0.27 (lab-male) -> wrongly f0
+x 0.33 ? -> nope, no need to change (lab-male, frame no.23)
+0.22 (lab-male,frame no.50)
 
-- stdnormalize*
-3.5 (studio-female)
 
 ==
 local maximum condition:
@@ -20,3 +20,27 @@ Fs (samples) in 1 sec
 delta_f      in ? sec
 ? = T0 = delta_f/Fs
 -> f0 = 1/T0
+f0=Fs/delta_t
+
+*delta_peak
+- peak length/ locals to peak (samples)
+- ensures peak is maximum within [peaki-delta_peak;peaki+delta_peak]
+- should be smaller (shorter) than high freq peaks (female voice)
+
+==
+the algorithm parameters
+- peak finding algorithms:
+-- find second largest peak of the whole frame *
+-- find largest peak inside expected f0 range
+*: preferred because the mean f0 is closer to expected f0 (found in wavesurfer)
+- Base autocorrel value R0: see value tries above
+- frame size (wavesurfer uses 6ms)
+
+
+==TODO
+- modify pitchcontour debugging:
+-- draw the whole result then run again to display debugging info
+-- join 2 plot & add legends
+
+* autocorrelation function gives erratic values (lab-female, frame no.34)
+=> use high-pass filter to filter (decrease amplitude) high frequencies

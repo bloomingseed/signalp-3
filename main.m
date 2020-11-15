@@ -1,46 +1,35 @@
-files = ["lab-male.wav","lab-female.wav", "studio-male.wav", "studio-female.wav"];
+%files = ["lab-male.wav","lab-female.wav", "studio-male.wav", "studio-female.wav"];
+files = ["lab-male.wav"];%, "studio-female.wav"];
 for k=1:length(files)
     [y,F1]=audioread("TinHieuMau/"+files(k));
     flen=200;   % frame length in millisec
     felms = flen*F1/1000;   % number of samples in frame
-    % n=12000:12000+felms;
-    % sig=sig(n);  
-    frames = splitx(y,felms);
-    index = floor(length(frames)/2);
-    framek=frames(index,1:2);               % select a frame
-    sig=y(framek(1):framek(2));        % signal value at framek
-
-    R=autocorrel(sig);
-    %nR = datanormalize(R);
-    nR = stdnormalize(R);
-    pivot = 3.5;
-
-    Fmin = 70;      % minimum pitch
-    Fmax = 400;     % maximum pitch
-    leftB = Fmin+1; % minimum delta_f
-    rightB=Fmax+1;  % maximum delta_f
     
+    frames = splitx(y,felms); 
+%     framek=frames(ceil(length(frames)/2),[1,2]);
+%     R=autocorrel(y(framek(1):framek(2)));
+    F0s = pitchcontour(y,F1);   % f0 in each frames
+    disp(files(k)+": mean="+mean(F0s,'omitnan')+", std="+std(F0s,'omitnan'))
+    
+    
+    
+    % plotting figure
     figure
 
-    subplot(4,1,1)
+    subplot(2,1,1)
     plot(y)
-    title(["Signal " files(k)])
-    line([framek(1) framek(1)], [min(y) max(y)], 'LineStyle','--')
-    line([framek(2) framek(2)], [min(y) max(y)],'LineStyle','--')
+    title("Signal "+ files(k))
+%     for i=1:length(frames)
+%        % draw frame boundaries
+%        line([frames(i,2), frames(i,2)], [-1 1], 'LineStyle','--')
+%     end
+%     line([framek(1) framek(1)], [min(y) max(y)], 'LineStyle','--')
+%     line([framek(2) framek(2)], [min(y) max(y)],'LineStyle','--')
 
-    subplot(4,1,2)
-    plot(framek(1):framek(2),sig)
-    title(["Signal at frame " index])
 
-    subplot(4,1,3)
-    plot(R)
-    title("Autocorrelation of the signal")
-
-    subplot(4,1,4)
-    plot(nR);
-    title("Normalized autocorrelation of the signal")
-    line([0,length(nR)],[pivot,pivot])
-    line([leftB leftB], [min(nR) max(nR)], 'LineStyle','--')
-    line([rightB rightB], [min(nR) max(nR)],'LineStyle','--')
-
+    subplot(2,1,2)
+    scatter(0:length(frames)-1,F0s,'filled')
+    xlim(0:length(frames))
+    title("Pitch contour pane")
+    
 end
