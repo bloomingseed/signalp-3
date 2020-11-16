@@ -29,13 +29,21 @@ f0=Fs/delta_t
 
 ==
 the algorithm parameters
-- peak finding algorithms:
--- find second largest peak of the whole frame *
--- find largest peak inside expected f0 range
-*: preferred because the mean f0 is closer to expected f0 (found in wavesurfer)
 - Base autocorrel value R0: see value tries above
 - frame size (wavesurfer uses 6ms)
 
+
+*Fa (analog) to Fc (concrete) using sampling rate of Fs
+reverse approach:
+convert concrete time (tc) to analog time (ta)
+1 mẫu trong tg rời rạc --- Ts giây
+tc mẫu			--- ta giây
+ta = tc*Ts, Ts is sampling period
+   = tc/Fs
+-> fa = 1/ta = Fs/tc
+
+-> tc = Fs/fa
+//-> ta = Fs/fc
 
 ==TODO
 - modify pitchcontour debugging:
@@ -44,3 +52,21 @@ the algorithm parameters
 
 * autocorrelation function gives erratic values (lab-female, frame no.34)
 => use high-pass filter to filter (decrease amplitude) high frequencies
+
+* algorithm
+input signal -> Voiced-Silenced discrimination -> split into frames -> calculate normalized autocorrelation of the signal frame -> find largest local maximum (peak)
+*(-> if peak is: not smaller than R0 AND is within expected domain AND is local maximum of 20 other samples)
+-> perform validity checks on peak
+-VALID-> calculate f0
+-INVALID-> f0 is undetermined
+
+
+
+* tính R0
+qt:
+- quan sát khung chứa âm vô thanh
+-> giá trị R01=r(t0), t0 là độ trễ của cực đại địa phương
+- quan sát khung chứa âm hữu thanh
+-> giá trị R02=r(t0), t0 là độ trễ của cực đại địa phương
+=> lấy avr(R01,R02) => R0
+lặp lại qt để R0(i)-R0(i-1) < 1^10-3

@@ -6,6 +6,6 @@ for k=0:N-1
    fself = timeshift(x,-k,0,0); % future self is the input signal right-shifted by k samples
    R(k+1)= sum(x.*fself);       % autocorrelation value at (k+1) sample
 end
-R=R/R(1);   % normalize
+R=R/R(1);   % normalize to [-1;1]
 end
 
