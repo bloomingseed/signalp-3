@@ -1,8 +1,9 @@
 % files = ["lab-male.wav","lab-female.wav", "studio-male.wav", "studio-female.wav"];
-files = ["lab-male.wav"];%, "studio-male.wav", "studio-female.wav"];
+files = ["studio-male.wav"];%, "studio-male.wav", "studio-female.wav"];
 for k=1:length(files)
     
-    [y,F1]=audioread("TinHieuMau/"+files(k));   % read signal     
+    [y,F1]=audioread("TinHieuMau/"+files(k));   % read signal 
+    
     F0s = pitchcontour(y,F1);                   % f0 in each frames
     n=length(F0s);                              % number of frames
     % print mean and standard deviation result for this signal:
@@ -16,14 +17,6 @@ for k=1:length(files)
     title("Signal "+ files(k))
     xlabel("Time(samples)")
     ylabel("Amplitude")
-    %DEBUGGING: draw frame boundaries
-%     flen=200;               % frame length (milliseconds)
-%     felms = flen*F1/1000;    % frame length (samples)
-%     frames = splitx(y,felms);   % find frames boundaries
-%     for i=1:length(frames)
-%        % draw each frame's right boundary
-%        line([frames(i,2), frames(i,2)], [-1 1], 'LineStyle','--') 
-%     end
 
     subplot(2,1,2)
     scatter(0:length(F0s)-1,F0s,'filled')    % plot F0s
@@ -37,7 +30,7 @@ for k=1:length(files)
     axis([0 length(F0s) f0min f0max])
     
     %DEBUGGING : rewind calculation process
-     pitchcontour(y,F1);     % set breakpoint here to have a result -
+%      pitchcontour(y,F1);     % set breakpoint here to have a result -
                              % process viewport; *also set breakpoint in inner DEBUGGING areas
     
 end
