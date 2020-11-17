@@ -19,7 +19,7 @@ function f0 = fundfreq(y,Fs)
     localleft=max(2,peaki-dpeak);   % left most local sample
     localright=min(peaki+dpeak,N);  % right most local sample
     %DEBUGGING: draw framek's statistics
-%     debugfundfreq;  % SET A BREAKPOINT HERE
+    debugfundfreq;  % SET A BREAKPOINT HERE
     
     if( peak >= R0...%)  % if greater than threshold (possibly not a noise)
         && tc>=dfmin && tc <=dfmax...   % inside acceptable f0 range

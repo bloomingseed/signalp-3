@@ -10,15 +10,15 @@ for k=1:length(files)
     
     [y,F1]=audioread("TinHieuMau/"+files(k));   % read signal 
     
-    F0s = pitchcontour(y,F1);                   % f0 in each frames
+%     F0s = pitchcontour(y,F1);                   % f0 in each frames
     F0s2 = pitchcontournosv(y,F1);  
-    pmeans = [pmeans mean(F0s,'omitnan')];
-    psds = [psds std(F0s,'omitnan')];
-    pmeansnosv = [pmeansnosv mean(F0s2,'omitnan')];
-    psdsnosv = [psdsnosv std(F0s2,'omitnan')];
+%     pmeans = [pmeans mean(F0s,'omitnan')];
+%     psds = [psds std(F0s,'omitnan')];
+%     pmeansnosv = [pmeansnosv mean(F0s2,'omitnan')];
+%     psdsnosv = [psdsnosv std(F0s2,'omitnan')];
     % print mean and standard deviation result for this signal:
-    disp(files(k)+": mean="+mean(F0s,'omitnan')+", std="+std(F0s,'omitnan'))
-    disp(files(k)+" (no sv): mean="+mean(F0s2,'omitnan')+", std="+std(F0s2,'omitnan'))
+%     disp(files(k)+": mean="+mean(F0s,'omitnan')+", std="+std(F0s,'omitnan'))
+%     disp(files(k)+" (no sv): mean="+mean(F0s2,'omitnan')+", std="+std(F0s2,'omitnan'))
     
     % plotting figure
 %     figure
@@ -57,21 +57,21 @@ for k=1:length(files)
     
 end
 
-figure; % comparing results
-pxaxis = 1:4;   % xaxis for plotting
-plot(pxaxis,means,pxaxis,pmeans,pxaxis,pmeansnosv,"magenta",pxaxis,sds,"blue--",pxaxis,psds,"red--",pxaxis,psdsnosv,"magenta--")
-hold on
-scatter(pxaxis,means,"filled","blue")
-scatter(pxaxis,pmeans,"filled","red")
-scatter(pxaxis,pmeansnosv,"filled","magenta")
-scatter(pxaxis,sds,"filled","blue")
-scatter(pxaxis,psds,"filled","red")
-scatter(pxaxis,psdsnosv,"filled","magenta")
-scaleupg
-hold off
-xticks(1:length(files));
-xticklabels(files);
-ylim([0,ceil(max([means,pmeans])*1.5)]); % spare top space
-ylabel("Frequency (Hz)");
-title("Comparing results, with and without Silence-Voiced filter, to Wave Surfer's")
-legend("Mean F0 (Wave Surfer's)","Mean F0 (with SV filter)","Mean F0 (without SV filter)","Standard deviation (Wave Surfer's)","Standard deviation (with SV filter)","Standard deviation (without SV filter)")
+% figure; % comparing results
+% pxaxis = 1:4;   % xaxis for plotting
+% plot(pxaxis,means,pxaxis,pmeans,pxaxis,pmeansnosv,"magenta",pxaxis,sds,"blue--",pxaxis,psds,"red--",pxaxis,psdsnosv,"magenta--")
+% hold on
+% scatter(pxaxis,means,"filled","blue")
+% scatter(pxaxis,pmeans,"filled","red")
+% scatter(pxaxis,pmeansnosv,"filled","magenta")
+% scatter(pxaxis,sds,"filled","blue")
+% scatter(pxaxis,psds,"filled","red")
+% scatter(pxaxis,psdsnosv,"filled","magenta")
+% scaleupg
+% hold off
+% xticks(1:length(files));
+% xticklabels(files);
+% ylim([0,ceil(max([means,pmeans])*1.5)]); % spare top space
+% ylabel("Frequency (Hz)");
+% title("Comparing results, with and without Silence-Voiced filter, to Wave Surfer's")
+% legend("Mean F0 (Wave Surfer's)","Mean F0 (with SV filter)","Mean F0 (without SV filter)","Standard deviation (Wave Surfer's)","Standard deviation (with SV filter)","Standard deviation (without SV filter)")

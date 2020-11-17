@@ -18,5 +18,5 @@ pllh=line([localleft localleft], [minr maxr],'LineStyle','--','Color','#7E2F8E')
 prlh=line([localright localright], [minr maxr],'LineStyle','--','Color','#7E2F8E');
 legend([acgh,r0h,ledh,redh,phandle,pllh,prlh],...
     ["R(lag)","R0","70Hz","400Hz","Local maximum","Leftmost local","Rightmost local"])
-xlabel("Time(lag)")
+xlabel("Lag(sample)")
 ylabel("Amplitude")

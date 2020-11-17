@@ -2,7 +2,6 @@
 %signal
 miny=min(y);    % minimum amplitude of original signal
 maxy=max(y);    % maximum amplitude
-framekn=length(framek);
 figure
 plot(y);          % show original audio signal
 %drawing framek's region
